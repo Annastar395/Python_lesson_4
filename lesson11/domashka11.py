@@ -22,6 +22,8 @@ def sort_keys_by_text_len(names_dict):
     txt_list = names_dict['text'].split(' ')
     return len(txt_list)
 
+def sort_name_alphab(n):
+    return n['name'].split(' ')[-1]
 
 def sort_keys_by_dod(names_dict):
     search = re.findall("\d+", names_dict['years'])
@@ -36,24 +38,24 @@ def sort_keys_by_dod(names_dict):
     return year_of_death
 
 
-
-
 # zadanie 1
-file_name = "datal.json"
+file_name = "data.json"
 json_data = ''
 
 try:
     abspath = os.path.abspath(file_name)
     json_data = read_json_datafile(abspath)
 
-except IOError as ex:
+except FileNotFoundError as ex:
     print("%s: %s" % (file_name, ex.strerror))
+
+
+
 
 
 # zadanie 2
 if not json_data == '':
-    sotrt_by_names = sorted(json_data, key=lambda n: n['name'].split(' ')[-1])
-    pretty_print(sotrt_by_names)
+    sotrt_by_names = sorted(json_data, key=sort_name_alphab)
 
     # zadanie 3
     sorted_by_dod = sorted(json_data, key=sort_keys_by_dod)
