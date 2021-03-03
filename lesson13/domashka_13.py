@@ -7,11 +7,11 @@ from random import randint
 from time import sleep
 
 quote_qty = 5
-csv_filename = os.path.abspath('quotes.csv')
-authors_path = os.path.abspath('authors.txt')
+csv_filename = path.abspath('quotes.csv')
+authors_path = path.abspath('authors.txt')
 
 url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&jsonp=parseQuote"
-json_filename = os.path.abspath('authors.json')
+json_filename = path.abspath('authors.json')
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November',
           'December']
 
@@ -68,7 +68,7 @@ def convert_list(data: list):
 
 
 def write_file(path: str, data):
-    fname, file_ext = os.path.splitext(path)
+    fname, file_ext = path.splitext(path)
     if file_ext == '.csv':
         keys = data[0].keys()
         with open(path, 'w', newline='') as out_file:
