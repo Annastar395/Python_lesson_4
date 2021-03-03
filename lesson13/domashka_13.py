@@ -71,14 +71,14 @@ def write_file(path: str, data):
     fname, file_ext = os.path.splitext(path)
     if file_ext == '.csv':
         keys = data[0].keys()
-        with open(path, 'w', newline='') as out_file:
+        with open(path, 'w', newline='',encoding="utf-8") as out_file:
             dict_writer = csv.DictWriter(out_file, keys)
             dict_writer.writeheader()
             dict_writer.writerows(data)
     elif file_ext == '.txt':
-        return open(path, "w").write(data)
+        return open(path, "w",encoding="utf-8").write(data)
     elif file_ext == '.json':
-        with open(path, 'w') as fp:
+        with open(path, 'w',encoding="utf-8") as fp:
             json.dump(data, fp, indent=4)
 
 
